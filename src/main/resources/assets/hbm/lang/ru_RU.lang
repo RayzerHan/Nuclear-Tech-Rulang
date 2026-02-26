@@ -3380,10 +3380,10 @@ item.item_expensive.heavy_frame.name=Тяжёлый каркас
 item.item_expensive.lead_plating.name=Радиационно-стойкое покрытие
 item.item_expensive.plastic.name=Пластиковые панели
 item.item_expensive.steel_plating.name=Стальная обшивка с болтовым соединением
-item.item_secret.aberrator.name=Часть Аберратора
-item.item_secret.canister.name=Композит SB-26
+item.item_secret.aberrator.name=Часть "Aberrator"
+item.item_secret.canister.name=Композит "SB-26"
 item.item_secret.controller.name=Проприетарный блок управления
-item.item_secret.folly.name=Фрагмент Безумия
+item.item_secret.folly.name=Фрагмент "Folly"
 item.item_secret.selenium_steel.name=Слиток селениевой стали
 item.iv_blood.name=Пакет с кровью
 item.iv_empty.name=Пакет для внутривенного введения
@@ -6648,6 +6648,7 @@ desc.gui.upgrade.power= * §1Энергосбережение§r: Стакает
 desc.gui.upgrade.speed= * §4Скорость§r: Стакается до 3-х уровней
 
 // Last updated 15.02.2026 by RayzerHan //
+
 
 
 
