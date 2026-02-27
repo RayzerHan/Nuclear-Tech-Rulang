@@ -725,7 +725,7 @@ container.barrel=Бочка
 container.bat9000=Охереть-большая цистерна 9000
 container.battery=Энергохранилище
 container.batteryREDD=ЭМЭХ
-container.batterySocket=Батарейный сокет
+container.batterySocket=Блок батарей
 container.bombMulti=Многоцелевая бомба
 container.casingBag=Сумка для гильз
 container.catalyticReformer=Каталитический реформер
@@ -5857,7 +5857,7 @@ tile.machine_autosaw.desc=Срубает ближайшие растения, п
 tile.machine_autosaw.suspended=Приостановлена
 tile.machine_bat9000.name=Охереть-большая цистерна 9000
 tile.machine_battery_redd.name=ЭМЭХ
-tile.machine_battery_socket.name=Батарейный сокет
+tile.machine_battery_socket.name=Блок батарей
 tile.machine_battery_socket.desc=Позволяет подключать аккумуляторы$напрямую к энергосети.$Выступает в качестве кабеля, все порты$подключены к одной сети.
 tile.machine_boiler.name=Бойлер
 tile.machine_boiler.desc=Большой бойлер для кипячения воды или нагрева нефти.$Требует внешний источник тепла.$Скорость передачи тепла: ΔT*0.1 TU/t
@@ -6648,6 +6648,7 @@ desc.gui.upgrade.power= * §1Энергосбережение§r: Стакает
 desc.gui.upgrade.speed= * §4Скорость§r: Стакается до 3-х уровней
 
 // Last updated 15.02.2026 by RayzerHan //
+
 
 
 
