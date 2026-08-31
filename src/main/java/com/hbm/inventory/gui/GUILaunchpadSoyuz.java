@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUILaunchpadSoyuz extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_soyuz.png");
+	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_launchpad_soyuz.png");
 	private TileEntityLaunchpadSoyuz launcher;
 	
 	public GUILaunchpadSoyuz(InventoryPlayer invPlayer, TileEntityLaunchpadSoyuz tedf) {
@@ -31,6 +31,11 @@ public class GUILaunchpadSoyuz extends GuiInfoContainer {
 		launcher.tanks[0].renderTankInfo(this, mouseX, mouseY, guiLeft + 152, guiTop + 44, 16, 52);
 		launcher.tanks[1].renderTankInfo(this, mouseX, mouseY, guiLeft + 170, guiTop + 44, 16, 52);
 		this.drawElectricityInfo(this, mouseX, mouseY, guiLeft + 134, guiTop + 44, 16, 52, launcher.power, launcher.maxPower);
+	}
+
+	@Override
+	protected void mouseClicked(int x, int y, int i) {
+		super.mouseClicked(x, y, i);
 	}
 
 	@Override
