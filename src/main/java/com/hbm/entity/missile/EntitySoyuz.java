@@ -44,8 +44,12 @@ public class EntitySoyuz extends Entity {
 			acceleration += 0.00025D;
 			motionY += acceleration;
 		}
+
+		this.prevPosX = this.lastTickPosX = this.posX;
+		this.prevPosY = this.lastTickPosY = this.posY;
+		this.prevPosZ = this.lastTickPosZ = this.posZ;
 		
-		this.setLocationAndAngles(posX + this.motionX, posY + this.motionY, posZ + this.motionZ, 0, 0);
+		this.setPosition(posX + this.motionX, posY + this.motionY, posZ + this.motionZ);
 		
 		if(!worldObj.isRemote) {
 			
@@ -137,9 +141,9 @@ public class EntitySoyuz extends Entity {
 
 	@Override
 	protected void entityInit() {
-        this.dataWatcher.addObject(8, 0);
+		this.dataWatcher.addObject(8, 0);
 	}
-	
+
 	public void setSat(ItemStack stack) {
 		this.payload[0] = stack;
 	}
@@ -159,12 +163,11 @@ public class EntitySoyuz extends Entity {
 		return this.dataWatcher.getWatchableObjectInt(8);
 	}
 	
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean isInRangeToRenderDist(double distance)
-    {
-        return distance < 500000;
-    }
+	public boolean isInRangeToRenderDist(double distance) {
+		return distance < 500000;
+	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbt) {
