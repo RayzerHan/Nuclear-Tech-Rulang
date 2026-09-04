@@ -4785,7 +4785,7 @@ satchip.radar=Показывает карту активных сущносте�
 satchip.resonator=Позволяет телепортироваться без перезарядки.
 satchip.scanner=Создает карту подземных руд сверху вниз.
 
-satellite.cooldown=Перезарядка: %
+satellite.cooldown=Перезарядка: %s
 satellite.data=ДОСТУПНЫ ДАННЫЕ
 satellite.pending=Замеры ожидаются: %s
 satellite.ready=ГОТОВ
