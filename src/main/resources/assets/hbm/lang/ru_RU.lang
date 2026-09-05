@@ -184,10 +184,12 @@ armorMod.type.leggings=Поножи
 armorMod.type.servo=Сервоприводы
 armorMod.type.special=Особое
 
+ass.alclad=Сплав авиационного алюминия 
 ass.analogAlt=Простая аналоговая схема
 ass.atomicClockAlt=Цезиевые атомные часы
 ass.factorioChip=Минималистичная схема
 ass.nitra=Амуниция из нитры
+ass.titaniumconstruction=Конструкция из авиационного титана
 
 autoswitch=Часть группы автоматического переключения "%s"$Рецепта изменяется в зависимости от первого ингредиента
 autoswitch.crushing=Дробление камня
@@ -606,6 +608,9 @@ chem.heavylube=Машинная смазка из тяжёлой нефти
 chem.oilelectrodes=Мгновенные электроды (мазут)
 chem.lubeelectrodes=Мгновенные электроды (машинная смазка)
 chem.deshcracked=Деш из крекинг нефти
+chem.lightconstruction=Легкая конструкция авиационного класса
+chem.carboncarbon=Листы из авиационного углеродного волокна
+
 
 com.copy=Копия %s
 
@@ -3477,6 +3482,7 @@ item.oil_tar.crack.name=Крекинговая нефтяная смола
 item.oil_tar.paraffin.name=Парафиновый воск
 item.oil_tar.wax.name=Хлорированный нефтяной воск
 item.oil_tar.wood.name=Древесная смола
+item.orbital_assembly.crystal_circuit.name=Сборка орбитального узла: плата кристалла6
 item.ore.asbestos=Асбестовая
 item.ore.borax=Буровая
 item.ore.chlorocalcite=Хлоркальцитовая
@@ -3556,6 +3562,7 @@ item.part_barrel_light.name=Лёгкий ствол (%s)
 item.part_beryllium.name=Коробка бериллиевой пыли
 item.part_carbon.name=Коробка угольной пыли
 item.part_copper.name=Коробка медной пыли
+item.part_generic.alclad.name=Авиационное листовое покрытие
 item.part_generic.glass_polarized.name=Поляризованная линза
 item.part_generic.hde.name=Элемент повышенной прочности
 item.part_generic.lde.name=Элемент малой плотности
