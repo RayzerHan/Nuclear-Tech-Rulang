@@ -72,10 +72,6 @@ public class TileEntityLaunchpadSoyuz extends TileEntityMachineBase implements I
 	public static final int COUNTDOWN_DURATION = 600;
 	public int countdown;
 	
-	public float getInterpPos(int index, float interp) {
-		return prevPositions[index] + (positions[index] - prevPositions[index]) * interp;
-	}
-	
 	private AudioWrapper[] audios;
 
 	public TileEntityLaunchpadSoyuz() {
@@ -472,6 +468,10 @@ public class TileEntityLaunchpadSoyuz extends TileEntityMachineBase implements I
 				this.positions[i] -= this.speed[i];
 			}
 		}
+	}
+	
+	public float getInterpPos(int index, float interp) {
+		return prevPositions[index] + (positions[index] - prevPositions[index]) * interp;
 	}
 	
 	public boolean canLaunch() {
