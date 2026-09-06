@@ -1269,7 +1269,9 @@ public class ResourceManager {
 	public static final IModelCustom soyuz_launcher_tower = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/launch_table/soyuz_launcher_tower.obj")).noSmooth().asVBO();
 	public static final IModelCustom soyuz_launcher_support_base = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/launch_table/soyuz_launcher_support_base.obj")).noSmooth().asVBO();
 	public static final IModelCustom soyuz_launcher_support = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/launch_table/soyuz_launcher_support.obj")).noSmooth().asVBO();
-	public static final IModelCustom launchpad_soyuz = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/machines/launchpad_soyuz.obj")).asVBO();
+	public static final IModelCustom launchpad_soyuz = new HFRWavefrontObject("models/machines/launchpad_soyuz.obj").asVBO();
+	public static final IModelCustom launchpad_lambda = new HFRWavefrontObject("models/machines/launchpad_lambda.obj").asVBO();
+	public static final IModelCustom lambda_rocket = new HFRWavefrontObject("models/lambda_rocket.obj").asVBO();
 
 	//Missile Parts
 	public static final IModelCustom missile_pad = AdvancedModelLoader.loadModel(new ResourceLocation(RefStrings.MODID, "models/weapons/launch_pad_silo.obj"));
@@ -1466,6 +1468,8 @@ public class ResourceManager {
 	public static final ResourceLocation soyuz_launcher_support_tex = new ResourceLocation(RefStrings.MODID, "textures/models/soyuz_launcher/launcher_support.png");
 
 	public static final ResourceLocation launchpad_soyuz_tex = new ResourceLocation(RefStrings.MODID, "textures/models/machines/launchpad_soyuz.png");
+	public static final ResourceLocation launchpad_lambda_tex = new ResourceLocation(RefStrings.MODID, "textures/models/machines/launchpad_lambda.png");
+	public static final ResourceLocation lambda_rocket_tex = new ResourceLocation(RefStrings.MODID, "textures/models/lambda_rocket.png");
 
 	//Missile Parts
 	public static final ResourceLocation missile_pad_tex = new ResourceLocation(RefStrings.MODID, "textures/models/launchpad/silo.png");

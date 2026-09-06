@@ -1328,6 +1328,7 @@ public class ModItems {
 
 	public static Item missile_soyuz;
 	public static Item missile_soyuz_lander;
+	public static Item missile_lambda;
 	public static Item satellite;
 	public static Item orbital_assembly;
 	public static Item sat_gerald;
@@ -3412,6 +3413,7 @@ public class ModItems {
 		missile_test = new ItemMissile(MissileFormFactor.MICRO, MissileTier.TIER0).setUnlocalizedName("missile_test").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":missile_micro");
 		missile_soyuz = new ItemSoyuz().setUnlocalizedName("missile_soyuz").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":soyuz");
 		missile_soyuz_lander = new ItemCustomLore().setUnlocalizedName("missile_soyuz_lander").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":soyuz_lander");
+		missile_lambda = new Item().setUnlocalizedName("missile_lambda").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":lambda_rocket");
 		missile_custom = new ItemCustomMissile().setUnlocalizedName("missile_custom").setMaxStackSize(1).setCreativeTab(null).setTextureName(RefStrings.MODID + ":missile_custom");
 		satellite = new ItemSatellite().setUnlocalizedName("satellite").setMaxStackSize(1).setCreativeTab(MainRegistry.missileTab).setTextureName(RefStrings.MODID + ":satellite");
 		orbital_assembly = new ItemOrbitalAssembly().setUnlocalizedName("orbital_assembly").setMaxStackSize(1).setCreativeTab(MainRegistry.partsTab).setTextureName(RefStrings.MODID + ":orbital_assembly");
@@ -5557,6 +5559,7 @@ public class ModItems {
 		//Rockets
 		GameRegistry.registerItem(missile_soyuz, missile_soyuz.getUnlocalizedName());
 		GameRegistry.registerItem(missile_soyuz_lander, missile_soyuz_lander.getUnlocalizedName());
+		GameRegistry.registerItem(missile_lambda, missile_lambda.getUnlocalizedName());
 		GameRegistry.registerItem(missile_custom, missile_custom.getUnlocalizedName());
 
 		//Missile Parts
