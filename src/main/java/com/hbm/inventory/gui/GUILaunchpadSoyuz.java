@@ -96,23 +96,14 @@ public class GUILaunchpadSoyuz extends GuiInfoContainer {
 			GL11.glScalef(1/scale, 1/scale, 1);
 			
 		} else if(launcher.soyuzStatus == SoyuzStatus.ABSENT) {
-			drawIndicator(I18nUtil.resolveKey("desc.gui.soyuz.idle"), 0xff0000);
+			drawConstrainedLabel(I18nUtil.resolveKey("desc.gui.soyuz.idle"), 97, 125, 0xff0000, 1F, 22F);
 		} else if(launcher.soyuzStatus == SoyuzStatus.LOADING) {
-			drawIndicator(I18nUtil.resolveKey("desc.gui.soyuz.loading"), 0xff8000);
+			drawConstrainedLabel(I18nUtil.resolveKey("desc.gui.soyuz.loading"), 97, 125, 0xff8000, 1F, 22F);
 		} else if(launcher.soyuzStatus == SoyuzStatus.FUELING) {
-			drawIndicator(I18nUtil.resolveKey("desc.gui.soyuz.fueling"), 0xffff00);
+			drawConstrainedLabel(I18nUtil.resolveKey("desc.gui.soyuz.fueling"), 97, 125, 0xffff00, 1F, 22F);
 		} else if(launcher.soyuzStatus == SoyuzStatus.READY) {
-			drawIndicator(I18nUtil.resolveKey("desc.gui.soyuz.ready"), 0x00ff00);
+			drawConstrainedLabel(I18nUtil.resolveKey("desc.gui.soyuz.ready"), 97, 125, 0x00ff00, 1F, 22F);
 		}
-	}
-	
-	protected void drawIndicator(String label, int color) {
-
-		float scale = Math.min(1F, 22F / this.fontRendererObj.getStringWidth(label));
-		
-		GL11.glScalef(scale, scale, 1);
-		this.fontRendererObj.drawString(label, (int)(97 / scale - this.fontRendererObj.getStringWidth(label) / 2F), (int)(125 / scale - this.fontRendererObj.FONT_HEIGHT / 2F), color);
-		GL11.glScalef(1 / scale, 1 / scale, 1);
 	}
 	
 	@Override

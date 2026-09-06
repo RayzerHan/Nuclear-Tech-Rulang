@@ -1,13 +1,19 @@
 package com.hbm.render.tileentity;
 
+import java.nio.DoubleBuffer;
+
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.main.ResourceManager;
+import com.hbm.tileentity.machine.TileEntityLaunchpadLambda;
 
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
 public class RenderLaunchpadLambda extends TileEntitySpecialRenderer {
+	
+	private static DoubleBuffer buf = null;
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float interp) {
@@ -16,6 +22,8 @@ public class RenderLaunchpadLambda extends TileEntitySpecialRenderer {
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_CULL_FACE);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
+		
+		if(buf == null) buf = GLAllocation.createDirectByteBuffer(8*4).asDoubleBuffer();
 		
 		float rotation = 0F;
 
@@ -27,26 +35,41 @@ public class RenderLaunchpadLambda extends TileEntitySpecialRenderer {
 		}
 		
 		GL11.glRotatef(rotation, 0F, 1F, 0F);
+		
+		TileEntityLaunchpadLambda launchpad = (TileEntityLaunchpadLambda) tile;
 
-		double doors = 3D;
-		double erector = 0D;
-		double rotor = 0D;
-		double clamps = 0D;
-		double pistons = 0D;
+		double doors = launchpad.getInterpPos(launchpad.INDEX_DOORS, interp);
+		double erector = launchpad.getInterpPos(launchpad.INDEX_ERECTOR, interp) - 25D;
+		double rotor = launchpad.getInterpPos(launchpad.INDEX_ROTOR, interp);
+		double clamps = launchpad.getInterpPos(launchpad.INDEX_CLAPMS, interp);
+		double pistons = launchpad.getInterpPos(launchpad.INDEX_PISTONS, interp);
 
 		bindTexture(ResourceManager.launchpad_lambda_tex);
 		ResourceManager.launchpad_lambda.renderPart("Silo");
 
 		GL11.glPushMatrix(); {
+			GL11.glEnable(GL11.GL_CLIP_PLANE0);
+			buf.put(new double[] { 0, 0, -1, 6} ).rewind();
+			GL11.glClipPlane(GL11.GL_CLIP_PLANE0, buf);
+			
 			GL11.glTranslated(0, 0, doors);
 			ResourceManager.launchpad_lambda.renderPart("DoorLeft");
+			GL11.glDisable(GL11.GL_CLIP_PLANE0);
 		} GL11.glPopMatrix();
 		
 		GL11.glPushMatrix(); {
+			GL11.glEnable(GL11.GL_CLIP_PLANE0);
+			buf.put(new double[] { 0, 0, 1, 6} ).rewind();
+			GL11.glClipPlane(GL11.GL_CLIP_PLANE0, buf);
+			
 			GL11.glTranslated(0, 0, -doors);
 			ResourceManager.launchpad_lambda.renderPart("DoorRight");
+			GL11.glDisable(GL11.GL_CLIP_PLANE0);
 		} GL11.glPopMatrix();
-		
+
+		GL11.glEnable(GL11.GL_CLIP_PLANE0);
+		buf.put(new double[] { 0, 1, 0, -0.25} ).rewind();
+		GL11.glClipPlane(GL11.GL_CLIP_PLANE0, buf);
 		
 		GL11.glTranslated(0, erector, 0);
 		
@@ -97,6 +120,8 @@ public class RenderLaunchpadLambda extends TileEntitySpecialRenderer {
 		GL11.glTranslated(0, 2, 0);
 		bindTexture(ResourceManager.lambda_rocket_tex);
 		ResourceManager.lambda_rocket.renderAll();
+		
+		GL11.glDisable(GL11.GL_CLIP_PLANE0);
 		
 		GL11.glShadeModel(GL11.GL_FLAT);
 		GL11.glPopMatrix();
