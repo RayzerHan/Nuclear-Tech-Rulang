@@ -5013,6 +5013,7 @@ tile.brick_concrete_cracked.name=Потресканные бетонные ки�
 tile.brick_concrete_cracked_stairs.name=Ступеньки из потресканных бетонных кирпичей
 tile.brick_concrete_marked.name=Обозначенные бетонные кирпичи
 tile.brick_concrete_mossy.name=Замшелые бетонные кирпичи
+tile.brick_concrete_mossy_stairs.name=Cтупени из замшелых бетонных кирпичей
 tile.brick_ducrete.name=Дюкретовые кирпичи
 tile.brick_ducrete_stairs.name=Ступеньки из дюкретовых кирпичей
 tile.brick_dungeon.name=Берцелианит кирпичи
