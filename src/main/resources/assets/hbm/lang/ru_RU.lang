@@ -611,7 +611,6 @@ chem.deshcracked=Деш из крекинг нефти
 chem.lightconstruction=Лёгкая конструкция авиационного класса
 chem.carboncarbon=Листы из авиационного углеродного волокна
 
-
 com.copy=Копия %s
 
 commands.satellite.no_active_satellites=Нет активных спутников!
@@ -4214,8 +4213,8 @@ item.sat_gerald.name=Строительный андроид Геральд
 item.sat_interface.name=Интерфейс спутникового управления
 item.satellite.death_ray.name=Орбитальный луч Смерти
 item.satellite.detector.name=Спутник-детектор широкополосного радиоизлучения
-item.satellite.miner_astro.name=Астероидный шахтёрский корабль
-item.satellite.miner_lunar.name=Лунный шахтёрский корабль
+item.satellite.miner_astro.name=Астероидный астродобытчик
+item.satellite.miner_lunar.name=Лунный астродобытчик
 item.satellite.precision_laser.name=Орбитальный прецизионный лазер
 item.satellite.radar.name=Радиолокационный спутник
 item.satellite.ray_scan.name=Спутник-сканер узкополосного излучения
