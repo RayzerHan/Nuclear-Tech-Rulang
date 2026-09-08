@@ -3,7 +3,7 @@ package com.hbm.tileentity.machine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hbm.entity.missile.EntitySoyuz;
+import com.hbm.entity.missile.EntityRocketSoyuz;
 import com.hbm.interfaces.IControlReceiver;
 import com.hbm.inventory.container.ContainerLaunchpadSoyuz;
 import com.hbm.inventory.fluid.Fluids;
@@ -172,7 +172,7 @@ public class TileEntityLaunchpadSoyuz extends TileEntityMachineBase implements I
 				for(int i = 0; i < 3; i++) MainRegistry.proxy.effectNT(data);
 			}
 			
-			List<EntitySoyuz> entities = worldObj.getEntitiesWithinAABB(EntitySoyuz.class, AxisAlignedBB.getBoundingBox(x - 1, yCoord + 4, z - 1, x + 1, yCoord + 14, z + 1));
+			List<EntityRocketSoyuz> entities = worldObj.getEntitiesWithinAABB(EntityRocketSoyuz.class, AxisAlignedBB.getBoundingBox(x - 1, yCoord + 4, z - 1, x + 1, yCoord + 14, z + 1));
 			
 			if(!entities.isEmpty() || (this.soyuzStatus == SoyuzStatus.LAUNCHING && this.countdown <= 20)) {
 				
@@ -508,7 +508,7 @@ public class TileEntityLaunchpadSoyuz extends TileEntityMachineBase implements I
 		double y = yCoord + 4;
 		double z = zCoord + 0.5 - dir.offsetZ * 4 - rot.offsetZ * 4;
 		
-		EntitySoyuz soyuz = new EntitySoyuz(worldObj);
+		EntityRocketSoyuz soyuz = new EntityRocketSoyuz(worldObj);
 		soyuz.setSkin(this.loadedType);
 		soyuz.mode = this.cargoMode ? 1 : 0;
 		soyuz.setLocationAndAngles(x, y, z, 0, 0);
@@ -540,11 +540,15 @@ public class TileEntityLaunchpadSoyuz extends TileEntityMachineBase implements I
 	public int orbital() {
 		if(this.cargoMode) return 0;
 		
-		if(slots[2] != null && (slots[2].getItem() == ModItems.sat_gerald || slots[2].getItemDamage() == EnumSatType.MINER_LUNAR.ordinal())) {
+		if(needsOrbiter(slots[2])) {
 			if(slots[3] != null && slots[3].getItem() == ModItems.missile_soyuz_lander) return 2;
 			return 1;
 		}
 		return 0;
+	}
+	
+	public static boolean needsOrbiter(ItemStack stack) {
+		return stack != null && (stack.getItem() == ModItems.sat_gerald || stack.getItemDamage() == EnumSatType.MINER_LUNAR.ordinal());
 	}
 
 	@Override
