@@ -41,6 +41,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileEntityMachineAssemblyMachine extends TileEntityMachineBase implements IEnergyReceiverMK2, IFluidStandardTransceiverMK2, IUpgradeInfoProvider, IControlReceiver, IGUIProvider, IRORValueProvider, IRORInteractive {
 
@@ -76,18 +77,24 @@ public class TileEntityMachineAssemblyMachine extends TileEntityMachineBase impl
 				.itemInput(4).itemOutput(16)
 				.fluidInput(inputTank).fluidOutput(outputTank);
 	}
-	
+
+	protected PortDef[] cachedPorts;
+
 	public PortDef[] getPorts() {
-		return new PortDef[] {
-				PortDef.make(xCoord - 1, yCoord, zCoord - 1, Library.NEG_X, Library.NEG_Z),
-				PortDef.make(xCoord + 0, yCoord, zCoord - 1, Library.NEG_Z),
-				PortDef.make(xCoord + 1, yCoord, zCoord - 1, Library.POS_X, Library.NEG_Z),
-				PortDef.make(xCoord + 1, yCoord, zCoord + 0, Library.POS_X),
-				PortDef.make(xCoord + 1, yCoord, zCoord + 1, Library.POS_X, Library.POS_Z),
-				PortDef.make(xCoord + 0, yCoord, zCoord + 1, Library.POS_Z),
-				PortDef.make(xCoord - 1, yCoord, zCoord + 1, Library.NEG_X, Library.POS_Z),
-				PortDef.make(xCoord - 1, yCoord, zCoord + 0, Library.NEG_X),
-		};
+		if(cachedPorts == null) {
+			
+			ForgeDirection dir = ForgeDirection.getOrientation(this.getBlockMetadata() - 10);
+			ForgeDirection rot = dir.getRotation(ForgeDirection.UP);
+			
+			cachedPorts = new PortDef[] {
+					PortDef.make(xCoord + dir.offsetX * 7 - rot.offsetX * 2, yCoord + 1, zCoord + dir.offsetZ * 7 - rot.offsetZ * 2, dir),
+					PortDef.make(xCoord + dir.offsetX * 7 - rot.offsetX * 3, yCoord + 1, zCoord + dir.offsetZ * 7 - rot.offsetZ * 3, dir),
+					PortDef.make(xCoord + dir.offsetX * 7 - rot.offsetX * 4, yCoord + 1, zCoord + dir.offsetZ * 7 - rot.offsetZ * 4, dir),
+					PortDef.make(xCoord + dir.offsetX * 7 - rot.offsetX * 5, yCoord + 1, zCoord + dir.offsetZ * 7 - rot.offsetZ * 5, dir),
+					PortDef.make(xCoord + dir.offsetX * 7 - rot.offsetX * 6, yCoord + 1, zCoord + dir.offsetZ * 7 - rot.offsetZ * 6, dir),
+			};
+		}
+		return cachedPorts;
 	}
 
 	@Override
@@ -102,14 +109,8 @@ public class TileEntityMachineAssemblyMachine extends TileEntityMachineBase impl
 		
 		if(!worldObj.isRemote) {
 
-			if(this.powerPorts == null) this.setupPowerPorts(getPorts());
-			if(this.fluidInPorts == null) this.setupFluidInPorts(getReceivingTanks(), PortDef.combine(getPorts()));
-			if(this.fluidOutPorts == null) this.setupFluidOutPorts(getSendingTanks(), PortDef.combine(getPorts()));
-			
-			this.updateAllPorts();
-			this.receivePower();
-			this.receiveFluid(getReceivingTanks());
-			this.provideFluid(getSendingTanks());
+			this.setupAllPorts(getPorts());
+			this.updatePortPIFIFO();
 			
 			GenericRecipe recipe = assemblerModule.getRecipe();
 			if(recipe != null) {
@@ -210,6 +211,7 @@ public class TileEntityMachineAssemblyMachine extends TileEntityMachineBase impl
 	}
 
 	@Override public void onChunkUnload() {
+		super.onChunkUnload();
 		if(audio != null) { audio.stopSound(); audio = null; }
 	}
 

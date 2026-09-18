@@ -27,13 +27,14 @@ import com.hbm.tileentity.IFluidCopiable;
 import com.hbm.tileentity.IGUIProvider;
 import com.hbm.tileentity.IUpgradeInfoProvider;
 import com.hbm.tileentity.TileEntityMachinePolluting;
+import com.hbm.tileentity.TilePort.PortDef;
 import com.hbm.util.Compat;
 import com.hbm.util.CompatEnergyControl;
 import com.hbm.util.fauxpointtwelve.DirPos;
 import com.hbm.util.i18n.I18nUtil;
 
 import api.hbm.energymk2.IEnergyProviderMK2;
-import api.hbm.fluid.IFluidStandardTransceiver;
+import api.hbm.fluidmk2.IFluidStandardTransceiverMK2;
 import api.hbm.tile.IInfoProviderEC;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.relauncher.Side;
@@ -51,7 +52,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implements IEnergyProviderMK2, IFluidStandardTransceiver, IGUIProvider, IUpgradeInfoProvider, IInfoProviderEC, IFluidCopiable {
+public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implements IEnergyProviderMK2, IFluidStandardTransceiverMK2, IGUIProvider, IUpgradeInfoProvider, IInfoProviderEC, IFluidCopiable {
 
 	public long power;
 	public static final long maxPower = 1_000_000;
@@ -119,11 +120,31 @@ public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implem
 				new DirPos(this.xCoord - rot.offsetX * 2 - dir.offsetX, this.yCoord, this.zCoord - rot.offsetZ * 2 - dir.offsetZ, rot.getOpposite())
 		};
 	}
+	
+	protected PortDef[] cachedPorts;
+
+	public PortDef[] getPorts() {
+		if(cachedPorts == null) {
+			ForgeDirection dir = ForgeDirection.getOrientation(this.getBlockMetadata() - 10).getRotation(ForgeDirection.UP);
+			ForgeDirection rot = dir.getRotation(ForgeDirection.DOWN);
+			
+			cachedPorts = new PortDef[] {
+					PortDef.make(xCoord + rot.offsetX, yCoord, zCoord + rot.offsetZ, rot),
+					PortDef.make(xCoord + rot.offsetX - dir.offsetX, yCoord, zCoord + rot.offsetZ - dir.offsetZ, rot),
+					PortDef.make(xCoord - rot.offsetX, yCoord, zCoord - rot.offsetZ, rot.getOpposite()),
+					PortDef.make(xCoord - rot.offsetX - dir.offsetX, yCoord, zCoord - rot.offsetZ - dir.offsetZ, rot.getOpposite()),
+			};
+		}
+		return cachedPorts;
+	}
 
 	@Override
 	public void updateEntity() {
 
 		if(!worldObj.isRemote) {
+
+			this.setupAllPorts(getPorts());
+			this.updatePortPOFIFO();
 
 			this.output = 0;
 			this.consumption = 0;
@@ -195,8 +216,6 @@ public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implem
 
 			power = Library.chargeItemsFromTE(slots, 3, power, power);
 			
-			this.autoPort(getConPos());
-
 			if(burnValue > 0 && amountToBurn > 0) {
 
 				ForgeDirection dir = ForgeDirection.getOrientation(this.getBlockMetadata() - 10).getRotation(ForgeDirection.UP);
@@ -420,7 +439,8 @@ public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implem
 
 	@Override
 	public void onChunkUnload() {
-
+		super.onChunkUnload();
+		
 		if(audio != null) {
 			audio.stopSound();
 			audio = null;
@@ -429,7 +449,6 @@ public class TileEntityMachineTurbofan extends TileEntityMachinePolluting implem
 
 	@Override
 	public void invalidate() {
-
 		super.invalidate();
 
 		if(audio != null) {
