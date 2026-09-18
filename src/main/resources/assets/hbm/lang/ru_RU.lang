@@ -3001,6 +3001,7 @@ item.insert_xsapi.name=Пластина XSAPI
 item.insert_yharonite.name=Яронитовая пластина
 item.item_expensive.bronze_tubes.name=Бронзовые конструкционные элементы
 item.item_expensive.circuit.name=Обширная печатная плата
+item.item_expensive.cmb_tubes.name=CMB конструкционныe элементы
 item.item_expensive.computer.name=Мейнфрейм
 item.item_expensive.degenerate_matter.name=Вырожденная материя
 item.item_expensive.ferro_plating.name=Армированные ферроурановые панели
