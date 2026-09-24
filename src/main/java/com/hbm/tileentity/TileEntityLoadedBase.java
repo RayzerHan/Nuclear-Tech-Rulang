@@ -68,6 +68,12 @@ public class TileEntityLoadedBase extends TileEntity implements ILoadedTile, IBu
 		}
 	}
 	
+	/** Sets up input ports and marks them as hijack */
+	public void setupFluidInPortsHijack(FluidTank[] tanks, PortDef ports) {
+		setupFluidInPorts(tanks, ports);
+		if(fluidInPorts != null) for(int i = 0; i < fluidInPorts.length; i++) fluidInPorts[i].setHijack();
+	}
+	
 	public void setupFluidOutPorts(FluidTank[] tanks, PortDef ports) {
 		if(fluidOutPorts != null) return;
 		fluidOutPorts = TilePort.oneToMany(this, tanks.length, ports);
@@ -115,6 +121,15 @@ public class TileEntityLoadedBase extends TileEntity implements ILoadedTile, IBu
 			ports[i].setupType(tanks[i].getTankType().getNetworkProvider());
 			if(!ports[i].needsRebuild) ports[i].checkSubscribe(worldObj);
 		}
+	}
+	
+	public void destroyAllPorts() {
+		if(powerPorts != null) for(int i = 0; i < powerPorts.length; i++) { powerPorts[i].disableIfPresent(worldObj); powerPorts[i] = null; }
+		if(fluidInPorts != null) for(int i = 0; i < fluidInPorts.length; i++) { fluidInPorts[i].disableIfPresent(worldObj); fluidInPorts[i] = null; }
+		if(fluidOutPorts != null) for(int i = 0; i < fluidOutPorts.length; i++) { fluidOutPorts[i].disableIfPresent(worldObj); fluidOutPorts[i] = null; }
+		powerPorts = null;
+		fluidInPorts = null;
+		fluidOutPorts = null;
 	}
 	
 	/// PORTS END ///
