@@ -31,7 +31,6 @@ import com.hbm.blocks.machine.BlockPWR.TileEntityBlockPWR;
 import com.hbm.blocks.machine.BlockVendingMachine.TileEntityVendingMachine;
 import com.hbm.blocks.machine.Floodlight.TileEntityFloodlight;
 import com.hbm.blocks.machine.FloodlightBeam.TileEntityFloodlightBeam;
-import com.hbm.blocks.machine.MachineCapacitor.TileEntityCapacitor;
 import com.hbm.blocks.machine.MachineFan.TileEntityFan;
 import com.hbm.blocks.machine.PistonInserter.TileEntityPistonInserter;
 import com.hbm.blocks.machine.WatzPump.TileEntityWatzPump;
@@ -88,7 +87,6 @@ public class TileMappings {
 		put(TileEntityMachineBattery.class, "tileentity_battery");
 		put(TileEntityBatterySocket.class, "tileentity_battery_socket");
 		put(TileEntityBatteryREDD.class, "tileentity_battery_redd");
-		put(TileEntityCapacitor.class, "tileentity_capacitor");
 		put(TileEntityMachineWoodBurner.class, "tileentity_wood_burner");
 		put(TileEntityRedBarrel.class, "tileentity_barrel");
 		put(TileEntityYellowBarrel.class, "tileentity_nukebarrel");
@@ -185,7 +183,6 @@ public class TileMappings {
 		put(TileEntityICFPress.class, "tileentity_icf_press");
 		put(TileEntityICFController.class, "tileentity_icf_controller");
 		put(TileEntityICF.class, "tileentity_icf");
-		put(TileEntityMachineFENSU.class, "tileentity_fensu");
 		put(TileEntityTrappedBrick.class, "tileentity_trapped_brick");
 		put(TileEntityWatzStruct.class, "tileentity_watz_struct");
 		put(TileEntityICFStruct.class, "tileentity_icf_struct");

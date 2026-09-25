@@ -31,9 +31,10 @@ public class TileEntityLoadedBase extends TileEntity implements ILoadedTile, IBu
 	public int tiltBlocksChecked = 0;
 	public int tiltBlocksValid = 0;
 
-	public TilePort[] powerPorts;
-	public TilePort[] fluidInPorts;
-	public TilePort[] fluidOutPorts;
+	// that did not last long at all
+	@Deprecated public TilePort[] powerPorts;
+	@Deprecated public TilePort[] fluidInPorts;
+	@Deprecated public TilePort[] fluidOutPorts;
 	
 	public static final boolean particleDebug = true;
 	
@@ -72,6 +73,14 @@ public class TileEntityLoadedBase extends TileEntity implements ILoadedTile, IBu
 	public void setupFluidInPortsHijack(FluidTank[] tanks, PortDef ports) {
 		setupFluidInPorts(tanks, ports);
 		if(fluidInPorts != null) for(int i = 0; i < fluidInPorts.length; i++) fluidInPorts[i].setHijack();
+	}
+	public void setupFluidInPortsHijack(FluidTank[] tanks, PortDef[] ports) {
+		if(fluidInPorts != null) return;
+		fluidInPorts = TilePort.manyToMany(this, ports);
+		for(int i = 0; i < fluidInPorts.length; i++) {
+			fluidInPorts[i].setupType(tanks[i].getTankType().getNetworkProvider());
+		}
+		for(int i = 0; i < fluidInPorts.length; i++) fluidInPorts[i].setHijack();
 	}
 	
 	public void setupFluidOutPorts(FluidTank[] tanks, PortDef ports) {
