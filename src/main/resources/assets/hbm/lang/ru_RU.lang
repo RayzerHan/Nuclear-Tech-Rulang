@@ -536,7 +536,7 @@ commands.locate.no_match=Структур с таким названием не�
 commands.locate.none_found=Поблизости структуры не найдены!
 commands.locate.success.coordinates=Структура %s найдена в координатах %d, %d
 
-container.ammoBag=Сумка для боеприпасов
+container.ammoBag=Сумка
 container.anvil=Наковальня %s-го уровня
 container.annihilator=Утилизатор
 container.arcFurnace=Дуговая печь
@@ -551,7 +551,7 @@ container.batterySocket=Аккумуляторный разъем
 container.bigAssTank=Цистернище
 container.blastFurnace=Доменная печь
 container.bombMulti=Многоцелевая бомба
-container.casingBag=Сумка для гильз
+container.casingBag=Сумка
 container.catalyticReformer=Каталитический реформер
 container.centrifuge=Центрифуга
 container.chemplant=Химическая установка
